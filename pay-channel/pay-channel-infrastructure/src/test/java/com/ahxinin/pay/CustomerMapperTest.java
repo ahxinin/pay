@@ -1,4 +1,4 @@
-package com.ahxinin.pay.repository;
+package com.ahxinin.pay;
 
 
 public class CustomerMapperTest {

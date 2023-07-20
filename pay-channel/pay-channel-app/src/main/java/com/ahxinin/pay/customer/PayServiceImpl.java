@@ -4,9 +4,9 @@ import com.ahxinin.pay.api.PayServiceI;
 import com.ahxinin.pay.dto.PayCmd;
 import com.ahxinin.pay.dto.data.PayDTO;
 import com.alibaba.cola.dto.MultiResponse;
-import org.apache.dubbo.config.annotation.DubboService;
+//import org.apache.dubbo.config.annotation.DubboService;
 
-@DubboService
+//@DubboService
 public class PayServiceImpl implements PayServiceI {
 
     @Override

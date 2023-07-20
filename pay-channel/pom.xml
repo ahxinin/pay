@@ -16,12 +16,15 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.deploy.skip>true</maven.deploy.skip>
         <spring-boot.version>2.7.2</spring-boot.version>
-        <mybatis-starter.version>3.0.2</mybatis-starter.version>
+        <mybatis-starter.version>2.3.1</mybatis-starter.version>
+        <mybatis.version>3.5.13</mybatis.version>
         <dubbo.version>3.1.8</dubbo.version>
         <nacos.version>0.2.12</nacos.version>
         <cola.components.version>4.3.2</cola.components.version>
         <javax.el-api.version>3.0.0</javax.el-api.version>
+        <junit.version>4.13.2</junit.version>
         <pay-spring-boot-starter.version>1.0-SNAPSHOT</pay-spring-boot-starter.version>
+        <alipay-sdk-java.version>4.34.0.ALL</alipay-sdk-java.version>
     </properties>
 
     <modules>
@@ -55,6 +58,11 @@
                 <version>${mybatis-starter.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-bom</artifactId>
                 <version>${dubbo.version}</version>
@@ -78,6 +86,18 @@
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
                 <version>${javax.el-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay-sdk-java.version}</version>
             </dependency>
 
             <!--Project modules-->
