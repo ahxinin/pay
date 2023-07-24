@@ -1,4 +1,4 @@
-package com.ahxinin.pay.alipay;
+package com.ahxinin.pay.channel.alipay;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;

@@ -1,6 +1,9 @@
-package com.ahxinin.pay.alipay;
+package com.ahxinin.pay.channel.alipay;
 
+import com.ahxinin.pay.channel.PayExtPt;
+import com.ahxinin.pay.domain.exception.PayException;
 import com.ahxinin.pay.dto.PayCmd;
+import com.alibaba.cola.extension.Extension;
 import com.alibaba.fastjson2.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
@@ -12,7 +15,8 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class AlipayService {
+@Extension(bizId = "pay", useCase = "alipay", scenario = "web")
+public class AlipayWebExt implements PayExtPt {
 
     @Autowired
     private AlipayClient alipayClient;
@@ -23,17 +27,26 @@ public class AlipayService {
      * 电脑网页支付
      * <a href="https://opendocs.alipay.com/open/59da99d0_alipay.trade.page.pay?pathHash=8e24911d">开发文档</a>
      */
-    public void pagePay(PayCmd payCmd) throws AlipayApiException {
+    @Override
+    public String pay(PayCmd payCmd) throws PayException {
         AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
         JSONObject bizContent = buildBizContent(payCmd);
 
         request.setNotifyUrl(config.getNotifyUrl());
         request.setReturnUrl(config.getReturnUrl());
         request.setBizContent(bizContent.toString());
-        AlipayTradePagePayResponse response = alipayClient.pageExecute(request);
-        if (response.isSuccess()){
-            log.info(JSONObject.toJSONString(response));
+
+        AlipayTradePagePayResponse response;
+        try {
+            response = alipayClient.pageExecute(request);
+            if (response.isSuccess()){
+                return response.getBody();
+            }
+        }catch (AlipayApiException e){
+            throw new PayException(e.getMessage());
         }
+
+        throw new PayException(response.getMsg()+"_"+response.getSubMsg());
     }
 
     private JSONObject buildBizContent(PayCmd payCmd){

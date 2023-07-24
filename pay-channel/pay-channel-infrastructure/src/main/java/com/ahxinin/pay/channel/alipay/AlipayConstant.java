@@ -1,4 +1,4 @@
-package com.ahxinin.pay.alipay;
+package com.ahxinin.pay.channel.alipay;
 
 public class AlipayConstant {
 
