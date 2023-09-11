@@ -20,7 +20,7 @@ public class PayGatewayImpl implements PayGateway {
     @Override
     public Pay createTrade(PayCmd payCmd) {
         try {
-            BizScenario bizScenario = BizScenario.newDefault();
+            BizScenario bizScenario = BizScenario.valueOf("pay", payCmd.getChannel(), payCmd.getScene());
             String data = extensionExecutor.execute(PayExtPt.class, bizScenario, pt -> pt.pay(payCmd));
             return Pay.buildData(data);
         } catch (PayException e) {

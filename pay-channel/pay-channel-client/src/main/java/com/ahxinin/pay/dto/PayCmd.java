@@ -13,14 +13,30 @@ import java.math.RoundingMode;
 @Builder
 public class PayCmd {
 
-    //交易编号
+    /**
+     * 交易编号
+     */
     private String tradeNo;
 
-    //支付金额
+    /**
+     * 支付金额
+     */
     private Long amount;
 
-    //交易物品
+    /**
+     * 交易物品
+     */
     private String subject;
+
+    /**
+     * 渠道
+     */
+    private String channel;
+
+    /**
+     * 场景
+     */
+    private String scene;
 
     public double convertRealAmount(){
        return new BigDecimal(amount).divide(new BigDecimal(100),2, RoundingMode.HALF_DOWN).doubleValue();
