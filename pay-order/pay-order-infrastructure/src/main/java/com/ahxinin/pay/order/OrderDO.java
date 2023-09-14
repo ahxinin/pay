@@ -1,15 +1,15 @@
-package com.ahxinin.pay.domain.order;
+package com.ahxinin.pay.order;
 
+import com.ahxinin.pay.domain.order.OrderState;
 import java.time.LocalDateTime;
-import lombok.Builder;
 import lombok.Data;
 
 /**
- * 支付订单
+ * @description: 订单数据表
+ * @date : 2023-09-14
  */
 @Data
-@Builder
-public class Order{
+public class OrderDO {
 
     /**
      * id
@@ -39,7 +39,7 @@ public class Order{
     /**
      * 订单状态
      */
-    private OrderState state;
+    private Integer state;
 
     /**
      * 更新时间
@@ -50,17 +50,4 @@ public class Order{
      * 创建时间
      */
     private LocalDateTime createTime;
-
-    /**
-     * 创建订单
-     */
-    public Order create(Long amount, String subject, String channel, String scene){
-        return Order.builder()
-                .amount(amount)
-                .subject(subject)
-                .channel(channel)
-                .scene(scene)
-                .state(OrderState.CREATED)
-                .build();
-    }
 }

@@ -9,6 +9,5 @@ import com.alibaba.cola.dto.MultiResponse;
  */
 public interface PayServiceI {
 
-    //支付
     MultiResponse<PayDTO> pay(PayCmd payCmd);
 }
