@@ -32,7 +32,7 @@
         <module>pay-channel-app</module>
         <module>pay-channel-domain</module>
         <module>pay-channel-infrastructure</module>
-        <module>start</module>
+        <module>pay-channel-start</module>
     </modules>
 
     <dependencies>
