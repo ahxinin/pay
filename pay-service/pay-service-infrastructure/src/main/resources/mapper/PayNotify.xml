@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahxinin.pay.gatewayimpl.database.PayNotifyMapper">
+
+    <insert id="insert" parameterType="com.ahxinin.pay.gatewayimpl.database.dataobject.PayNotifyDO">
+        insert into pay_notify(
+            trade_no,
+            out_trade_no,
+            trade_status,
+            notify_data,
+            deleted,
+            created_at
+        ) values (
+            #{tradeNo},
+            #{outTradeNo},
+            #{tradeStatus},
+            #{notifyData},
+            0,
+            #{createdAt}
+        )
+    </insert>
+</mapper>

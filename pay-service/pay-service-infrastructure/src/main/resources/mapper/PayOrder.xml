@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahxinin.pay.gatewayimpl.database.PayOrderMapper">
+
+    <!-- 定义结果映射，以 Map 返回 -->
+    <resultMap id="payOrderMap" type="com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="trade_type" property="tradeType" jdbcType="VARCHAR"/>
+        <result column="trade_id" property="tradeId" jdbcType="BIGINT"/>
+        <result column="amount" property="amount" jdbcType="BIGINT"/>
+        <result column="discount" property="discount" jdbcType="BIGINT"/>
+        <result column="pay_amount" property="payAmount" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
+        <result column="pay_type" property="payType" jdbcType="VARCHAR"/>
+        <result column="third_account" property="thirdAccount" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="trade_file_url" property="tradeFileUrl" jdbcType="VARCHAR"/>
+        <result column="created_at" property="createdAt" jdbcType="BIGINT"/>
+        <result column="updated_at" property="updatedAt" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="searchCondition">
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
+        <if test="payType != null and payType != ''">
+            AND pay_type = #{payType}
+        </if>
+        <if test="tradeId != null and tradeId != ''">
+            AND trade_id = #{tradeId}
+        </if>
+        <if test="state != null and state != '' and state != 0">
+            AND state = #{state}
+        </if>
+        <if test="startTime != null and startTime > 0">
+            AND created_at &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime > 0">
+            AND created_at &lt;= #{endTime}
+        </if>
+        <if test="userId != null and userId > 0">
+            AND user_id = #{userId}
+        </if>
+        <if test="tradeType != null and tradeType != ''">
+            AND trade_type = #{tradeType}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO">
+        INSERT INTO pay_order(
+            id,
+            trade_type,
+            trade_id,
+            amount,
+            discount,
+            pay_amount,
+            name,
+            pay_way,
+            pay_type,
+            third_account,
+            state,
+            user_id,
+            trade_file_url,
+            created_at
+        ) VALUES (
+            #{id},
+            #{tradeType},
+            #{tradeId},
+            #{amount},
+            #{discount},
+            #{payAmount},
+            #{name},
+            #{payWay},
+            #{payType},
+            #{thirdAccount},
+            #{state},
+            #{userId},
+            #{tradeFileUrl},
+            #{createdAt}
+        )
+    </insert>
+
+    <update id="updateState" parameterType="com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO">
+        UPDATE pay_order
+        SET
+            state = #{state},
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateStatePaidFromPending" parameterType="com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO">
+        UPDATE pay_order
+        SET
+            state = 'paid',
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+            AND state = 'pending'
+    </update>
+
+    <update id="updateStateCancelFromPending" parameterType="com.cometlight.braille.gatewayimpl.database.dataobject.PayOrderDO">
+        UPDATE pay_order
+        SET
+            state = 'cancel',
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+            AND state = 'pending'
+    </update>
+
+    <select id="getByTradeId" resultMap="payOrderMap" parameterType="java.lang.Long">
+        SELECT * FROM pay_order
+        WHERE trade_id = #{tradeId}
+    </select>
+
+    <select id="getById" resultMap="payOrderMap" parameterType="java.lang.Long">
+        SELECT * FROM pay_order
+        WHERE id = #{id}
+    </select>
+
+    <select id="listPayOrder" resultMap="payOrderMap" parameterType="com.ahxinin.pay.dto.ListPayOrderQuery">
+        SELECT * FROM pay_order
+        WHERE 1= 1
+        <include refid="searchCondition"/>
+        ORDER BY created_at DESC
+        <if test="currentPage > 0 and pageSize > 0">
+            limit #{offset}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="countPayOrder" resultType="java.lang.Long" parameterType="com.ahxinin.pay.dto.ListPayOrderQuery">
+        SELECT count(*) FROM pay_order
+        WHERE 1= 1
+        <include refid="searchCondition"/>
+    </select>
+
+</mapper>
