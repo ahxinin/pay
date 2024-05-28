@@ -1,0 +1,16 @@
+nacos:
+  config:
+    server-addr: 116.148.208.138:7148
+    username: nacos
+    password: nacos2024!@#$
+    group: pay
+    namespace: 7774b17e-650a-4f90-b1ec-19a5d9891ea5
+    data-ids: cloudbase.yaml,thirdparty.yaml
+    type: yaml
+    auto-refresh: true
+    bootstrap:
+      enable: true
+
+logging:
+  file:
+    path: ./logs

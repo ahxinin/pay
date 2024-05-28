@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: pay-service
+  profiles:
+    active: local
+
+mybatis:
+  type-aliases-package: com.ahxinin.pay
+  mapper-locations: classpath:mapper/*.xml
+  map-underscore-to-camel-case: true

@@ -76,7 +76,7 @@ public class WeixinPayJsApiDO {
                 .outTradeNo(String.valueOf(prepayOrder.getId()))
                 .description(prepayOrder.getName())
                 .total(prepayOrder.getAmount().intValue())
-                .openId(prepayOrder.getWeixinMpOpenId())
+                .openId(prepayOrder.getThirdAccount())
                 .build();
     }
 

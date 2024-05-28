@@ -100,7 +100,7 @@
             AND state = 'pending'
     </update>
 
-    <update id="updateStateCancelFromPending" parameterType="com.cometlight.braille.gatewayimpl.database.dataobject.PayOrderDO">
+    <update id="updateStateCancelFromPending" parameterType="com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO">
         UPDATE pay_order
         SET
             state = 'cancel',

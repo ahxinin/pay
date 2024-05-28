@@ -2,6 +2,7 @@ package com.ahxinin.pay.domain;
 
 import com.ahxinin.pay.contants.PlanConstant;
 import com.ahxinin.pay.enums.PayOrderStateEnum;
+import com.ahxinin.pay.enums.TradeTypeEnum;
 import com.alibaba.cola.extension.BizScenario;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -41,9 +42,25 @@ public class PayOrder {
     private Long amount;
 
     /**
+     * 优惠金额
+     */
+    private Long discount;
+
+    /**
+     * 实付金额
+     */
+    private Long payAmount;
+
+    /**
      * 交易名称
      */
     private String name;
+
+    /**
+     * 付费模式
+     * see {@link PayWayEnum}
+     */
+    private String payWay;
 
     /**
      * 支付方式
@@ -52,9 +69,9 @@ public class PayOrder {
     private String payType;
 
     /**
-     * 微信公众号openId
+     * 第三方支付账号
      */
-    private String weixinMpOpenId;
+    private String thirdAccount;
 
     /**
      * 支付订单状态
@@ -66,6 +83,11 @@ public class PayOrder {
      * 用户ID
      */
     private Long userId;
+
+    /**
+     * 交易凭证url
+     */
+    private String tradeFileUrl;
 
     /**
      * 金额四舍五入转换为以元为单位
@@ -111,8 +133,29 @@ public class PayOrder {
         return PayOrderStateEnum.CANCEL.getCode().equals(state);
     }
 
+    /**
+     * 交易完成
+     */
+    public void paid(){
+        this.state = PayOrderStateEnum.PAID.getCode();
+    }
+
+    /**
+     * 更新交易凭证
+     */
+    public void updateTrade(String tradeFileUrl){
+        this.tradeFileUrl = tradeFileUrl;
+    }
+
+    /**
+     * 更新实际支付金额
+     */
+    public void updatePayAmount(){
+        discount = discount==null ? 0 : discount;
+        this.payAmount = amount = discount;
+    }
 
     public String toString(){
-        return "PayOrder(id=" + this.getId() + ", tradeType=" + this.getTradeType() + ", tradeId=" + this.getTradeId() + ", amount=" + this.getAmount() + ", name=" + this.getName() + ", payType=" + this.getPayType() + ", weixinMpOpenId=" + this.getWeixinMpOpenId() + ", state=" + this.getState() + ")";
+        return "PayOrder(id=" + this.getId() + ", tradeType=" + this.getTradeType() + ", tradeId=" + this.getTradeId() + ", amount=" + this.getAmount() + ", name=" + this.getName() + ", payType=" + this.getPayType() + ", thirdAccount=" + this.getThirdAccount() + ", state=" + this.getState() + ")";
     }
 }

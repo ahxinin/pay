@@ -21,6 +21,11 @@ public interface PayOrderGateway {
     Boolean updatePaid(Long id);
 
     /**
+     * 创建已完成订单
+     */
+    void createPaidOrder(PayOrder payOrder);
+
+    /**
      * 更新支付订单状态
      */
     Boolean updateCancel(Long id);
