@@ -1,11 +1,7 @@
 package com.ahxinin.pay.assembler;
 
+import com.ahxinin.pay.clientobject.PayOrderDataCO;
 import com.ahxinin.pay.domain.PayOrder;
-import com.ahxinin.pay.domain.PayOrderResult;
-import com.ahxinin.pay.dto.PayCmd;
-import com.ahxinin.pay.dto.clientobject.PayOrderCO;
-import com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO;
-import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -18,13 +14,5 @@ public interface PayOrderAssembler {
 
     PayOrderAssembler INSTANCE = Mappers.getMapper(PayOrderAssembler.class);
 
-    PayOrderCO toClientObject(PayOrderDO orderDO);
-
-    PayOrderCO toClientObject(PayOrder payOrder);
-
-    List<PayOrderCO> toClientObjectList(List<PayOrderDO> orderDOList);
-
-    PayOrder toPayOrder(PayCmd payCmd);
-
-    PayOrderResult toPayOrderResult(PayOrder payOrder);
+    PayOrderDataCO toClientObject(PayOrder payOrder);
 }

@@ -37,7 +37,7 @@
         <module>pay-api-app</module>
         <module>pay-api-domain</module>
         <module>pay-api-infrastructure</module>
-        <module>start</module>
+        <module>pay-api-start</module>
     </modules>
 
     <dependencies>
