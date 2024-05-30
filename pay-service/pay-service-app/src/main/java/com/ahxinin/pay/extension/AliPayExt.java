@@ -19,7 +19,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
  * @date : 2024-03-14
  */
 @Slf4j
-@ConditionalOnProperty(name = "pay.enable", havingValue = "true")
 @Extension(bizId = PlanConstant.BIZ_ID, useCase = PlanConstant.PAY_CASE_ALI)
 public class AliPayExt implements PayExtPt{
 

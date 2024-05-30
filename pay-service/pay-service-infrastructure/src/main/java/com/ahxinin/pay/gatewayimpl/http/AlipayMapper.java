@@ -28,7 +28,6 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 @Component
-@ConditionalOnProperty(name = "pay.enable", havingValue = "true")
 public class AlipayMapper {
 
     @Resource

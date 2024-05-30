@@ -1,5 +1,6 @@
 package com.ahxinin.pay;
 
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Frank Zhang
  */
-@SpringBootApplication(scanBasePackages = {"com.ahxinin.pay", "com.alibaba.cola"})
+@EnableDubbo
+@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {

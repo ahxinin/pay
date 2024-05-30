@@ -1,7 +1,6 @@
 package com.ahxinin.pay.gatewayimpl.http;
 
 import cn.hutool.http.HttpUtil;
-import com.ahxinin.pay.config.PayConfig;
 import com.ahxinin.pay.config.WeixinPayConfig;
 import com.ahxinin.pay.domain.PayOrderResult;
 import com.ahxinin.pay.dto.WeixinMpInitCmd;
@@ -26,7 +25,6 @@ import com.wechat.pay.java.service.payments.jsapi.model.QueryOrderByOutTradeNoRe
 import com.wechat.pay.java.service.payments.model.Transaction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -36,7 +34,6 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 @Component
-@ConditionalOnProperty(name = "pay.enable", havingValue = "true")
 public class WeixinPayMapper {
 
     @Autowired
@@ -45,8 +42,6 @@ public class WeixinPayMapper {
     private NotificationParser notificationParser;
     @Autowired
     private WeixinPayConfig weixinPayConfig;
-    @Autowired
-    private PayConfig payConfig;
     @Autowired
     private PayNotifyMapper payNotifyMapper;
 
@@ -118,7 +113,7 @@ public class WeixinPayMapper {
      * 用户进入微信公众号授权页面
      */
     public String mpInit(WeixinMpInitCmd weixinMpInitCmd){
-        return weixinPayConfig.buildInitUrl(weixinMpInitCmd, payConfig.getWapUrl());
+        return weixinPayConfig.buildInitUrl(weixinMpInitCmd);
     }
 
     /**

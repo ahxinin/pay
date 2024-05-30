@@ -8,7 +8,6 @@ import lombok.Getter;
  */
 public enum TradeTypeEnum {
 
-    BRAILLE_RESOURCE("braille-resource", "盲文资源"),
     USER_PLAN("user-plan", "用户套餐"),;
 
     @Getter

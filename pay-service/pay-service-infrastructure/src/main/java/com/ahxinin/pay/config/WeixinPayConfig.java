@@ -3,7 +3,6 @@ package com.ahxinin.pay.config;
 import com.ahxinin.pay.dto.WeixinMpInitCmd;
 import com.wechat.pay.java.core.http.UrlEncoder;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix ="weixinpay")
-@ConditionalOnProperty(name = "pay.enable", havingValue = "true")
 public class WeixinPayConfig {
 
     private String merchantId;
@@ -29,19 +27,21 @@ public class WeixinPayConfig {
 
     private String mpAppSecret;
 
+    private String redirectUrl;
+
     private String notifyUrl;
 
     /**
      * 进入授权页面
      */
-    public String buildInitUrl(WeixinMpInitCmd weixinMpInitCmd, String redirectUrl){
+    public String buildInitUrl(WeixinMpInitCmd weixinMpInitCmd){
         redirectUrl = redirectUrl + weixinMpInitCmd.buildUrlParam();
         String url = UrlEncoder.urlEncode(redirectUrl);
         return "https://open.weixin.qq.com/connect/oauth2/authorize?"
                 + "appid=" + this.mpAppId
                 + "&redirect_uri=" + url
                 + "&response_type=code"
-                + "&scope=" + "snsapi_base"
+                + "&scope=snsapi_base"
                 + "#wechat_redirect";
     }
 

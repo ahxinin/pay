@@ -36,7 +36,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
  * @date : 2024-03-14
  */@Slf4j
 @DubboService
-@ConditionalOnProperty(name = "pay.enable", havingValue = "true")
 public class PayServiceImpl implements PayServiceI {
 
     @Resource
@@ -53,6 +52,20 @@ public class PayServiceImpl implements PayServiceI {
     private PayFaced payFaced;
     @Resource
     private PayConfig payConfig;
+
+    @Override
+    public SingleResponse<WeixinMpInitCO> weixinMpInit(WeixinMpInitCmd weixinMpInitCmd) {
+        String url = weixinPayMapper.mpInit(weixinMpInitCmd);
+        WeixinMpInitCO weixinMpInitCO = WeixinMpInitCO.init(url);
+        return SingleResponse.of(weixinMpInitCO);
+    }
+
+    @Override
+    public SingleResponse<WeixinMpAuthCO> weixinMpAuth(WeixinMpAuthCmd weixinMpAuthCmd) {
+        String openId = weixinPayMapper.mpAuth(weixinMpAuthCmd.getCode());
+        WeixinMpAuthCO weixinMpAuthCO = WeixinMpAuthCO.init(openId);
+        return SingleResponse.of(weixinMpAuthCO);
+    }
 
     @Override
     public SingleResponse<PayCO> pay(PayCmd payCmd) {
@@ -73,20 +86,6 @@ public class PayServiceImpl implements PayServiceI {
         // 设置缓存
         payOrderGateway.addPayCache(payCmd, payOrder, payCO);
         return SingleResponse.of(payCO);
-    }
-
-    @Override
-    public SingleResponse<WeixinMpInitCO> weixinMpInit(WeixinMpInitCmd weixinMpInitCmd) {
-        String url = weixinPayMapper.mpInit(weixinMpInitCmd);
-        WeixinMpInitCO weixinMpInitCO = WeixinMpInitCO.init(url);
-        return SingleResponse.of(weixinMpInitCO);
-    }
-
-    @Override
-    public SingleResponse<WeixinMpAuthCO> weixinMpAuth(WeixinMpAuthCmd weixinMpAuthCmd) {
-        String openId = weixinPayMapper.mpAuth(weixinMpAuthCmd.getCode());
-        WeixinMpAuthCO weixinMpAuthCO = WeixinMpAuthCO.init(openId);
-        return SingleResponse.of(weixinMpAuthCO);
     }
 
     @Override

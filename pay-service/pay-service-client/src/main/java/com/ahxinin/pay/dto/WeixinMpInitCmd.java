@@ -10,11 +10,18 @@ import lombok.Data;
 @Data
 public class WeixinMpInitCmd implements Serializable {
 
-    private Long tradeId;
-
+    /**
+     * 交易类型
+     * @see com.ahxinin.pay.enums.TradeTypeEnum
+     */
     private String tradeType;
 
+    /**
+     * 交易id
+     */
+    private Long tradeId;
+
     public String buildUrlParam(){
-        return "?tradeId=" + tradeId + "&tradeType=" + tradeType;
+        return "?tradeType=" + tradeType +"&tradeId=" + tradeId;
     }
 }

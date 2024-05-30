@@ -22,16 +22,6 @@ public class GetPayUrlCO implements Serializable {
     private String tradeId;
 
     /**
-     * 创建资源支付链接
-     */
-    public static GetPayUrlCO ofResource(String tradeId){
-        GetPayUrlCO getPayUrlCO = new GetPayUrlCO();
-        getPayUrlCO.setTradeType(TradeTypeEnum.BRAILLE_RESOURCE.getCode());
-        getPayUrlCO.setTradeId(tradeId);
-        return getPayUrlCO;
-    }
-
-    /**
      * 创建套餐支付链接
      */
     public static GetPayUrlCO ofPlan(String tradeId) {
