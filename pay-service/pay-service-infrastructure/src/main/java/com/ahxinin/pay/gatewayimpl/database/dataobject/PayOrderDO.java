@@ -37,6 +37,16 @@ public class PayOrderDO implements Serializable {
     private Long amount;
 
     /**
+     * 优惠金额
+     */
+    private Long discount;
+
+    /**
+     * 实付金额
+     */
+    private Long payAmount;
+
+    /**
      * 交易名称
      */
     private String name;
@@ -47,9 +57,9 @@ public class PayOrderDO implements Serializable {
     private String payType;
 
     /**
-     * 微信公众号openId
+     * 第三方支付账号
      */
-    private String weixinMpOpenId;
+    private String thirdAccount;
 
     /**
      * 支付订单状态
@@ -60,6 +70,11 @@ public class PayOrderDO implements Serializable {
      * 用户ID
      */
     private Long userId;
+
+    /**
+     * 交易凭证url
+     */
+    private String tradeFileUrl;
 
     /**
      * 是否删除

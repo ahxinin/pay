@@ -12,7 +12,6 @@
         <result column="discount" property="discount" jdbcType="BIGINT"/>
         <result column="pay_amount" property="payAmount" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
         <result column="pay_type" property="payType" jdbcType="VARCHAR"/>
         <result column="third_account" property="thirdAccount" jdbcType="VARCHAR"/>
         <result column="state" property="state" jdbcType="VARCHAR"/>
@@ -58,7 +57,6 @@
             discount,
             pay_amount,
             name,
-            pay_way,
             pay_type,
             third_account,
             state,
@@ -73,7 +71,6 @@
             #{discount},
             #{payAmount},
             #{name},
-            #{payWay},
             #{payType},
             #{thirdAccount},
             #{state},

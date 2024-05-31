@@ -17,6 +17,7 @@ public class PayCmd implements Serializable {
 
     /**
      * 支付方式
+     * @see com.ahxinin.pay.enums.PayTypeEnum
      */
     private String payType;
 
@@ -27,6 +28,7 @@ public class PayCmd implements Serializable {
 
     /**
      * 交易类型
+     * @see com.ahxinin.pay.enums.TradeTypeEnum
      */
     private String tradeType;
 

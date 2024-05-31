@@ -2,7 +2,7 @@ package com.ahxinin.pay.service;
 
 import com.ahxinin.pay.api.PayServiceI;
 import com.ahxinin.pay.assembler.PayOrderAssembler;
-import com.ahxinin.pay.command.ResourcePayExe;
+import com.ahxinin.pay.command.PayExe;
 import com.ahxinin.pay.config.PayConfig;
 import com.ahxinin.pay.domain.PayOrder;
 import com.ahxinin.pay.domain.PayOrderResult;
@@ -29,7 +29,6 @@ import com.alibaba.cola.dto.SingleResponse;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 /**
  * @description: 支付服务
@@ -41,7 +40,7 @@ public class PayServiceImpl implements PayServiceI {
     @Resource
     private CommonGateway commonGateway;
     @Resource
-    private ResourcePayExe resourcePayExe;
+    private PayExe payExe;
     @Resource
     private WeixinPayMapper weixinPayMapper;
     @Resource
@@ -82,7 +81,7 @@ public class PayServiceImpl implements PayServiceI {
         payOrderGateway.createPayOrder(payOrder);
 
         // 支付流程
-        PayCO payCO = resourcePayExe.execute(payOrder);
+        PayCO payCO = payExe.execute(payOrder);
         // 设置缓存
         payOrderGateway.addPayCache(payCmd, payOrder, payCO);
         return SingleResponse.of(payCO);
@@ -131,7 +130,7 @@ public class PayServiceImpl implements PayServiceI {
             return buildPayResult(state);
         }
 
-        PayOrderResult payOrderResult = resourcePayExe.queryPayResource(getPayResultCmd);
+        PayOrderResult payOrderResult = payExe.queryPayResult(getPayResultCmd);
         // 处理状态更新
         payFaced.notify(payOrderResult);
         return buildPayResult(payOrderResult.getState());

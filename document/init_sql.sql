@@ -5,7 +5,6 @@ CREATE TABLE `pay_order` (
   `amount` bigint(20) NOT NULL COMMENT '交易金额',
   `discount` bigint(20) DEFAULT 0 COMMENT '优惠金额',
   `name` varchar(128) NOT NULL COMMENT '交易名称',
-  `pay_way` varchar(32) NOT NULL COMMENT '付费模式',
   `pay_type` varchar(32) NOT NULL COMMENT '支付方式',
   `third_account` varchar(128) DEFAULT NULL COMMENT '第三方支付账号',
   `state` varchar(32) DEFAULT NULL COMMENT '订单状态',

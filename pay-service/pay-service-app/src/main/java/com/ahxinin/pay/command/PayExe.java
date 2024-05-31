@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class ResourcePayExe {
+public class PayExe {
 
     @Resource
     private ExtensionExecutor extensionExecutor;
@@ -25,7 +25,7 @@ public class ResourcePayExe {
         return extensionExecutor.execute(PayExtPt.class, payOrder.getBizScenario(), ex -> ex.pay(payOrder));
     }
 
-    public PayOrderResult queryPayResource(GetPayResultCmd getPayResultCmd){
+    public PayOrderResult queryPayResult(GetPayResultCmd getPayResultCmd){
         return extensionExecutor.execute(PayExtPt.class, getPayResultCmd.getBizScenario(), ex -> ex.queryPayResult(getPayResultCmd));
     }
 }

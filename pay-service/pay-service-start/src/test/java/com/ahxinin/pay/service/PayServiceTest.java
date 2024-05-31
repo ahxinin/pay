@@ -1,10 +1,13 @@
 package com.ahxinin.pay.service;
 
 import com.ahxinin.pay.api.PayServiceI;
+import com.ahxinin.pay.dto.PayCmd;
 import com.ahxinin.pay.dto.WeixinMpAuthCmd;
 import com.ahxinin.pay.dto.WeixinMpInitCmd;
+import com.ahxinin.pay.dto.clientobject.PayCO;
 import com.ahxinin.pay.dto.clientobject.WeixinMpAuthCO;
 import com.ahxinin.pay.dto.clientobject.WeixinMpInitCO;
+import com.ahxinin.pay.enums.PayTypeEnum;
 import com.ahxinin.pay.enums.TradeTypeEnum;
 import com.alibaba.cola.dto.SingleResponse;
 import javax.annotation.Resource;
@@ -44,6 +47,20 @@ public class PayServiceTest {
         weixinMpAuthCmd.setCode("081jo410070sbS1Dnm0006fKG11jo41o");
         SingleResponse<WeixinMpAuthCO> response = payService.weixinMpAuth(weixinMpAuthCmd);
         log.info("weixin openid:{}", response.getData());
+        Assert.assertTrue(response.isSuccess());
+    }
+
+    @Test
+    public void pay(){
+        PayCmd payCmd = new PayCmd();
+        payCmd.setName("test");
+        payCmd.setPayType(PayTypeEnum.ALIPAY.getCode());
+        payCmd.setAmount(1L);
+        payCmd.setTradeType(TradeTypeEnum.USER_PLAN.getCode());
+        payCmd.setTradeId(System.currentTimeMillis());
+        payCmd.setUserId(1L);
+        SingleResponse<PayCO> response = payService.pay(payCmd);
+        log.info("payCO:{}", response.getData());
         Assert.assertTrue(response.isSuccess());
     }
 }
