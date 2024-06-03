@@ -1,4 +1,4 @@
-package com.ahxinin.pay.clientobject;
+package com.ahxinin.pay.dto.clientobject;
 
 import java.io.Serializable;
 import lombok.Data;

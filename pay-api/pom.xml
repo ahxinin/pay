@@ -29,6 +29,7 @@
         <pay-service-client.version>1.0.0-SNAPSHOT</pay-service-client.version>
         <hutool.version>5.8.23</hutool.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <guava.version>32.0.0-jre</guava.version>
     </properties>
 
     <modules>
@@ -186,6 +187,12 @@
                 <version>${org.mapstruct.version}</version>
             </dependency>
             <!--end mapstruct-->
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

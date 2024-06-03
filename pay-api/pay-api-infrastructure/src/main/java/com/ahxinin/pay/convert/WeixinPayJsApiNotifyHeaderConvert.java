@@ -1,6 +1,6 @@
 package com.ahxinin.pay.convert;
 
-import com.ahxinin.pay.clientobject.WeixinPayNotifyHeaderCO;
+import com.ahxinin.pay.dto.clientobject.WeixinPayNotifyHeaderCO;
 import com.ahxinin.pay.dto.WeixinPayJsApiNotifyHeaderCmd;
 import org.apache.ibatis.annotations.Mapper;
 import org.mapstruct.factory.Mappers;

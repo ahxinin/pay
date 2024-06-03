@@ -28,5 +28,10 @@
             <artifactId>fastjson2</artifactId>
         </dependency>
         <!-- FastJson End -->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
     </dependencies>
 </project>

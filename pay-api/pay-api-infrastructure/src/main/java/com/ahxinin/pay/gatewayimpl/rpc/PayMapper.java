@@ -1,8 +1,8 @@
 package com.ahxinin.pay.gatewayimpl.rpc;
 
 import com.ahxinin.pay.api.PayServiceI;
-import com.ahxinin.pay.clientobject.AlipayNotifyCO;
-import com.ahxinin.pay.clientobject.WeixinPayNotifyCO;
+import com.ahxinin.pay.dto.clientobject.AlipayNotifyCO;
+import com.ahxinin.pay.dto.clientobject.WeixinPayNotifyCO;
 import com.ahxinin.pay.convert.WeixinPayJsApiNotifyHeaderConvert;
 import com.ahxinin.pay.domain.PayNotify;
 import com.ahxinin.pay.dto.GetPayResultCmd;

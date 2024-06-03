@@ -1,8 +1,8 @@
 package com.ahxinin.pay.controller;
 
-import com.ahxinin.pay.clientobject.AlipayNotifyCO;
-import com.ahxinin.pay.clientobject.WeixinPayNotifyCO;
-import com.ahxinin.pay.clientobject.WeixinPayNotifyHeaderCO;
+import com.ahxinin.pay.dto.clientobject.AlipayNotifyCO;
+import com.ahxinin.pay.dto.clientobject.WeixinPayNotifyCO;
+import com.ahxinin.pay.dto.clientobject.WeixinPayNotifyHeaderCO;
 import com.ahxinin.pay.command.PayNotifyExe;
 import com.alibaba.fastjson2.JSONObject;
 import java.util.Map;
@@ -43,13 +43,13 @@ public class OpenApiController {
     }
 
     /**
-     * 微信公众号支付购买资源回调
+     * 微信公众号支付回调
      */
     @PostMapping("weixin/notify")
     public ResponseEntity<String> weixinApiNotify(@RequestBody JSONObject params, HttpServletRequest request){
         log.info("weixinApiNotify params:{}", params);
         WeixinPayNotifyCO weixinPayNotifyCO = params.toJavaObject(WeixinPayNotifyCO.class);
-        WeixinPayNotifyHeaderCO weixinPayNotifyHeaderCO = init(request);
+        WeixinPayNotifyHeaderCO weixinPayNotifyHeaderCO = initWeixinPayNotifyHeader(request);
         weixinPayNotifyCO.setHeader(weixinPayNotifyHeaderCO);
 
         String result = payNotifyExe.weixinNotify(params, weixinPayNotifyCO);
@@ -57,7 +57,7 @@ public class OpenApiController {
     }
 
     /**
-     * 支付宝支付购买资源回调
+     * 支付宝支付回调
      */
     @PostMapping(value = "ali/notify", produces = "application/x-www-form-urlencoded")
     public ResponseEntity<String> aliApiNotify(@RequestParam Map<String, String> params){
@@ -67,7 +67,10 @@ public class OpenApiController {
         return ResponseEntity.ok(result);
     }
 
-    public static WeixinPayNotifyHeaderCO init(HttpServletRequest request){
+    /**
+     * 初始化微信支付回调参数
+     */
+    private static WeixinPayNotifyHeaderCO initWeixinPayNotifyHeader(HttpServletRequest request){
         WeixinPayNotifyHeaderCO weixinPayNotifyHeaderCO = new WeixinPayNotifyHeaderCO();
         weixinPayNotifyHeaderCO.setSignature(request.getHeader("Wechatpay-Signature"));
         weixinPayNotifyHeaderCO.setSerial(request.getHeader("Wechatpay-Serial"));

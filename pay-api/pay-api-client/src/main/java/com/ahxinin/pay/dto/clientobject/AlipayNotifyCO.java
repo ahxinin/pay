@@ -1,4 +1,4 @@
-package com.ahxinin.pay.clientobject;
+package com.ahxinin.pay.dto.clientobject;
 
 import com.alibaba.fastjson2.JSONObject;
 import java.io.Serializable;

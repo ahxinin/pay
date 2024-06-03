@@ -1,12 +1,10 @@
 package com.ahxinin.pay.command;
 
-import com.ahxinin.pay.clientobject.AlipayNotifyCO;
-import com.ahxinin.pay.clientobject.WeixinPayNotifyCO;
+import com.ahxinin.pay.dto.clientobject.AlipayNotifyCO;
+import com.ahxinin.pay.dto.clientobject.WeixinPayNotifyCO;
 import com.ahxinin.pay.domain.PayNotify;
-import com.ahxinin.pay.dto.clientobject.AlipayWapNotifyCO;
 import com.ahxinin.pay.dto.clientobject.PayNotifyCO;
 import com.ahxinin.pay.gatewayimpl.rpc.PayMapper;
-import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.fastjson2.JSONObject;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

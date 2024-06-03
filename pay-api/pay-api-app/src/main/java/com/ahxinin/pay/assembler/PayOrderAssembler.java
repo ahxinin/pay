@@ -1,6 +1,6 @@
 package com.ahxinin.pay.assembler;
 
-import com.ahxinin.pay.clientobject.PayOrderDataCO;
+import com.ahxinin.pay.dto.clientobject.PayOrderDataCO;
 import com.ahxinin.pay.domain.PayOrder;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
