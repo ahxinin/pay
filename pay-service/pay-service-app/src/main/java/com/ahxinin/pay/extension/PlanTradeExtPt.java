@@ -5,7 +5,7 @@ import com.ahxinin.pay.domain.PayOrder;
 import com.ahxinin.pay.dto.clientobject.PayNotifyCO;
 import com.ahxinin.pay.gateway.PayOrderGateway;
 import com.alibaba.cola.extension.Extension;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 
 /**

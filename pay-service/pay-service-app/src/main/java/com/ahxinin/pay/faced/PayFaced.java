@@ -8,8 +8,7 @@ import com.ahxinin.pay.enums.PayOrderStateEnum;
 import com.ahxinin.pay.extension.TradeExtPt;
 import com.ahxinin.pay.gateway.PayOrderGateway;
 import com.alibaba.cola.extension.BizScenario;
-import com.alibaba.cola.extension.ExtensionExecutor;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class PayFaced {
     @Resource
     private PayOrderGateway payOrderGateway;
-    @Resource
-    private ExtensionExecutor extensionExecutor;
+//    @Resource
+//    private ExtensionExecutor extensionExecutor;
 
     @Transactional(rollbackFor = Exception.class)
     public PayNotifyCO notify(PayOrderResult payOrderResult){
@@ -58,8 +57,9 @@ public class PayFaced {
 
         //更新业务授权状态
         BizScenario bizScenario = BizScenario.valueOf(PlanConstant.BIZ_ID, payOrder.getTradeType());
-        PayNotifyCO payNotifyCO = extensionExecutor.execute(TradeExtPt.class, bizScenario, ex -> ex.notifySuccess(id));
-        log.info("支付成功通知处理结果：id:{}, result:{}", id, payNotifyCO);
-        return payNotifyCO;
+//        PayNotifyCO payNotifyCO = extensionExecutor.execute(TradeExtPt.class, bizScenario, ex -> ex.notifySuccess(id));
+//        log.info("支付成功通知处理结果：id:{}, result:{}", id, payNotifyCO);
+//        return payNotifyCO;
+        return null;
     }
 }

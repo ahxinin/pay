@@ -10,7 +10,7 @@ import com.ahxinin.pay.gatewayimpl.http.dataobject.AlipayWapDO;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.extension.Extension;
 import java.io.UnsupportedEncodingException;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 

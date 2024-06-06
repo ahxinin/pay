@@ -60,5 +60,6 @@
             <artifactId>protobuf-java</artifactId>
         </dependency>
         <!-- dubbo end -->
+
     </dependencies>
 </project>

@@ -11,7 +11,7 @@ import com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.SingleResponse;
 import java.util.List;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.apache.dubbo.config.annotation.DubboService;
 
 /**

@@ -2,7 +2,7 @@ package com.ahxinin.pay.gatewayimpl;
 
 import com.ahxinin.pay.gateway.CommonGateway;
 import com.ahxinin.pay.gatewayimpl.inner.SnowFlakeMapper;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 /**

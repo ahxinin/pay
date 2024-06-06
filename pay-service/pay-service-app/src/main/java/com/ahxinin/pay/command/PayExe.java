@@ -5,9 +5,9 @@ import com.ahxinin.pay.domain.PayOrderResult;
 import com.ahxinin.pay.dto.GetPayResultCmd;
 import com.ahxinin.pay.dto.clientobject.PayCO;
 import com.ahxinin.pay.extension.PayExtPt;
-import com.alibaba.cola.extension.ExtensionExecutor;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,14 +18,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class PayExe {
 
-    @Resource
-    private ExtensionExecutor extensionExecutor;
+//    @Autowired
+//    private ExtensionExecutor extensionExecutor;
 
     public PayCO execute(PayOrder payOrder){
-        return extensionExecutor.execute(PayExtPt.class, payOrder.getBizScenario(), ex -> ex.pay(payOrder));
+//        return extensionExecutor.execute(PayExtPt.class, payOrder.getBizScenario(), ex -> ex.pay(payOrder));
+        return null;
     }
 
     public PayOrderResult queryPayResult(GetPayResultCmd getPayResultCmd){
-        return extensionExecutor.execute(PayExtPt.class, getPayResultCmd.getBizScenario(), ex -> ex.queryPayResult(getPayResultCmd));
+//        return extensionExecutor.execute(PayExtPt.class, getPayResultCmd.getBizScenario(), ex -> ex.queryPayResult(getPayResultCmd));
+        return null;
     }
 }

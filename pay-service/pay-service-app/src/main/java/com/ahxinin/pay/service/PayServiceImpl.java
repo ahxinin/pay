@@ -26,7 +26,7 @@ import com.ahxinin.pay.gateway.PayOrderGateway;
 import com.ahxinin.pay.gatewayimpl.http.AlipayMapper;
 import com.ahxinin.pay.gatewayimpl.http.WeixinPayMapper;
 import com.alibaba.cola.dto.SingleResponse;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 

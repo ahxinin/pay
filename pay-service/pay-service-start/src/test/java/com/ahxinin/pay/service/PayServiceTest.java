@@ -10,7 +10,7 @@ import com.ahxinin.pay.dto.clientobject.WeixinMpInitCO;
 import com.ahxinin.pay.enums.PayTypeEnum;
 import com.ahxinin.pay.enums.TradeTypeEnum;
 import com.alibaba.cola.dto.SingleResponse;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;

@@ -11,7 +11,7 @@ import com.ahxinin.pay.gatewayimpl.database.PayOrderMapper;
 import com.ahxinin.pay.gatewayimpl.database.dataobject.PayOrderDO;
 import com.alibaba.fastjson2.JSONObject;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

@@ -9,7 +9,7 @@ import com.ahxinin.pay.dto.clientobject.PayCO;
 import com.ahxinin.pay.gatewayimpl.http.WeixinPayMapper;
 import com.ahxinin.pay.gatewayimpl.http.dataobject.WeixinPayJsApiDO;
 import com.alibaba.cola.extension.Extension;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 

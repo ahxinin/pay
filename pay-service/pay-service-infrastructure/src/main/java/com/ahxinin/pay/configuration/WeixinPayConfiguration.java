@@ -6,8 +6,7 @@ import com.wechat.pay.java.core.RSAAutoCertificateConfig;
 import com.wechat.pay.java.core.notification.NotificationConfig;
 import com.wechat.pay.java.core.notification.NotificationParser;
 import com.wechat.pay.java.service.payments.jsapi.JsapiServiceExtension;
-import javax.annotation.Resource;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

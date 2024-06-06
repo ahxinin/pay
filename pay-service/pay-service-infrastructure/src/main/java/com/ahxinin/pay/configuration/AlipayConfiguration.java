@@ -3,7 +3,7 @@ package com.ahxinin.pay.configuration;
 import com.ahxinin.pay.config.AlipayConfig;
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.Config;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +21,10 @@ public class AlipayConfiguration {
     private AlipayConfig alipayConfig;
 
     @Bean
-    public void init(){
+    public boolean init(){
         log.info("alipay configuration init");
         Factory.setOptions(getOptions());
+        return Boolean.TRUE;
     }
 
     private Config getOptions() {

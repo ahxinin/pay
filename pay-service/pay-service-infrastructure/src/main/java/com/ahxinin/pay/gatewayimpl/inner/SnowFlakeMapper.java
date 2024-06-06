@@ -1,7 +1,7 @@
 package com.ahxinin.pay.gatewayimpl.inner;
 
 import com.sankuai.inf.leaf.IDGen;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
