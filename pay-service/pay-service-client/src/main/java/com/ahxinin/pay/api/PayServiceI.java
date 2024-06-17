@@ -22,24 +22,9 @@ import com.alibaba.cola.dto.SingleResponse;
 public interface PayServiceI {
 
     /**
-     * 获取微信公众号授权页面URL
-     */
-    SingleResponse<WeixinMpInitCO> weixinMpInit(WeixinMpInitCmd weixinMpInitCmd);
-
-    /**
-     * 微信公众号授权
-     */
-    SingleResponse<WeixinMpAuthCO> weixinMpAuth(WeixinMpAuthCmd weixinMpAuthCmd);
-
-    /**
      * 预支付请求
      */
     SingleResponse<PayCO> pay(PayCmd payCmd);
-
-    /**
-     * 微信支付通知
-     */
-    SingleResponse<PayNotifyCO> weixinNotify(WeixinPayJsApiNotifyCmd notifyCmd);
 
     /**
      * 支付宝支付通知

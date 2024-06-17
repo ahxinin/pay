@@ -42,8 +42,6 @@ public class PayServiceImpl implements PayServiceI {
     @Resource
     private PayExe payExe;
     @Resource
-    private WeixinPayMapper weixinPayMapper;
-    @Resource
     private AlipayMapper alipayMapper;
     @Resource
     private PayOrderGateway payOrderGateway;
@@ -51,20 +49,6 @@ public class PayServiceImpl implements PayServiceI {
     private PayFaced payFaced;
     @Resource
     private PayConfig payConfig;
-
-    @Override
-    public SingleResponse<WeixinMpInitCO> weixinMpInit(WeixinMpInitCmd weixinMpInitCmd) {
-        String url = weixinPayMapper.mpInit(weixinMpInitCmd);
-        WeixinMpInitCO weixinMpInitCO = WeixinMpInitCO.init(url);
-        return SingleResponse.of(weixinMpInitCO);
-    }
-
-    @Override
-    public SingleResponse<WeixinMpAuthCO> weixinMpAuth(WeixinMpAuthCmd weixinMpAuthCmd) {
-        String openId = weixinPayMapper.mpAuth(weixinMpAuthCmd.getCode());
-        WeixinMpAuthCO weixinMpAuthCO = WeixinMpAuthCO.init(openId);
-        return SingleResponse.of(weixinMpAuthCO);
-    }
 
     @Override
     public SingleResponse<PayCO> pay(PayCmd payCmd) {
@@ -85,20 +69,6 @@ public class PayServiceImpl implements PayServiceI {
         // 设置缓存
         payOrderGateway.addPayCache(payCmd, payOrder, payCO);
         return SingleResponse.of(payCO);
-    }
-
-    @Override
-    public SingleResponse<PayNotifyCO> weixinNotify(WeixinPayJsApiNotifyCmd notifyCmd) {
-        try {
-            log.info("weixin notify, notifyCmd:{}", notifyCmd.toString());
-            PayOrderResult payOrderResult = weixinPayMapper.jsApiNotify(notifyCmd);
-            PayNotifyCO payNotifyCO = payFaced.notify(payOrderResult);
-            payNotifyCO.updateWeixinSuccess();
-            return SingleResponse.of(payNotifyCO);
-        }catch (Exception e){
-            log.error("weixin notify error, notifyCmd:{}", notifyCmd.toString(), e);
-            return SingleResponse.of(PayNotifyCO.failReturnMessage());
-        }
     }
 
     @Override

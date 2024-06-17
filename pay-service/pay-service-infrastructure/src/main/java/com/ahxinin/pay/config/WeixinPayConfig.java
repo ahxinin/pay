@@ -3,6 +3,7 @@ package com.ahxinin.pay.config;
 import com.ahxinin.pay.dto.WeixinMpInitCmd;
 import com.wechat.pay.java.core.http.UrlEncoder;
 import lombok.Data;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix ="weixinpay")
+@ConditionalOnProperty(name = "pay.weixin.enable", havingValue = "true")
 public class WeixinPayConfig {
 
     private String merchantId;

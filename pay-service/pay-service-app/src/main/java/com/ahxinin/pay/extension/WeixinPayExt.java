@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
  */
 @Slf4j
 @Extension(bizId = PlanConstant.BIZ_ID, useCase = PlanConstant.PAY_CASE_WEIXIN)
+@ConditionalOnProperty(name = "pay.weixin.enable", havingValue = "true")
 public class WeixinPayExt implements PayExtPt{
 
     @Resource
