@@ -1,6 +1,7 @@
 package com.ahxinin.pay.service;
 
 import com.ahxinin.pay.api.PayServiceI;
+import com.ahxinin.pay.api.WeixinServiceI;
 import com.ahxinin.pay.dto.PayCmd;
 import com.ahxinin.pay.dto.WeixinMpAuthCmd;
 import com.ahxinin.pay.dto.WeixinMpInitCmd;
@@ -30,13 +31,15 @@ public class PayServiceTest {
 
     @Resource
     private PayServiceI payService;
+    @Resource
+    private WeixinServiceI weixinService;
 
     @Test
     public void weixinMpInitTest(){
         WeixinMpInitCmd weixinMpInitCmd = new WeixinMpInitCmd();
         weixinMpInitCmd.setTradeType(TradeTypeEnum.USER_PLAN.getCode());
         weixinMpInitCmd.setTradeId(123456L);
-        SingleResponse<WeixinMpInitCO> response = payService.weixinMpInit(weixinMpInitCmd);
+        SingleResponse<WeixinMpInitCO> response = weixinService.weixinMpInit(weixinMpInitCmd);
         log.info("weixinMpUrl:{}", response.getData());
         Assert.assertTrue(response.isSuccess());
     }
@@ -45,7 +48,7 @@ public class PayServiceTest {
     public void weixinMpAuthTest(){
         WeixinMpAuthCmd weixinMpAuthCmd = new WeixinMpAuthCmd();
         weixinMpAuthCmd.setCode("081jo410070sbS1Dnm0006fKG11jo41o");
-        SingleResponse<WeixinMpAuthCO> response = payService.weixinMpAuth(weixinMpAuthCmd);
+        SingleResponse<WeixinMpAuthCO> response = weixinService.weixinMpAuth(weixinMpAuthCmd);
         log.info("weixin openid:{}", response.getData());
         Assert.assertTrue(response.isSuccess());
     }

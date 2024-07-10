@@ -1,0 +1,16 @@
+networks:
+  default:
+    name: micrsservice-net
+
+services:
+  pay-service:
+    image: ahxinin/pay-service
+    container_name: pay-service
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - $USER_PORT:7001
+    volumes:
+      - ./user:/var/local/server
+      - ./res:/var/local/resource
+      - ./logs/:/var/local/java_logs
